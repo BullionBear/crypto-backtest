@@ -56,6 +56,6 @@ def make_binance_market_stat(date: str, symbol: str, dst: str) -> bool:
 
 if __name__ == '__main__':
     date = '2024-03-01'
-    symbol = 'ETHUSDT'
+    symbol = 'PEPEUSDT'
     dst = f'./data/raw/binance_{symbol.lower()}_{date}.csv'
     make_binance_market_stat(date, symbol, dst)
