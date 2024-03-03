@@ -37,7 +37,7 @@ def make_binance_market_stat(date: str, symbol: str, dst: str) -> bool:
             # Adjust the format as needed
             for field in ['E', 'C', 'O']:
                 if field in df.columns:
-                    df[field] = df[field].dt.strftime('%Y-%m-%d %H:%M:%S')
+                    df[field] = df[field].dt.strftime('%Y-%m-%d %H:%M:%S.%f')
 
             # Convert other specific fields if they exist and need conversion
             # This part is omitted for now as it seems the main issue was with date fields
@@ -55,7 +55,7 @@ def make_binance_market_stat(date: str, symbol: str, dst: str) -> bool:
 
 
 if __name__ == '__main__':
-    date = '2024-02-28'
-    symbol = 'BTCUSDT'
+    date = '2024-03-01'
+    symbol = 'ETHUSDT'
     dst = f'./data/raw/binance_{symbol.lower()}_{date}.csv'
     make_binance_market_stat(date, symbol, dst)
