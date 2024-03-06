@@ -5,3 +5,4 @@ ipywidgets
 jupyterlab_widgets
 pandas
 pymongo
+tqdm
