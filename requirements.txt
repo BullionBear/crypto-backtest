@@ -5,4 +5,5 @@ ipywidgets
 jupyterlab_widgets
 pandas
 pymongo
+python-binance
 tqdm
