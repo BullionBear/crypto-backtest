@@ -7,5 +7,4 @@ pandas
 pymongo
 python-binance
 tqdm
-fastapi
-uvicorn
+-r service/requirements.txt
