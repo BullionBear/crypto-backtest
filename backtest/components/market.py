@@ -25,7 +25,7 @@ class KLineMarket:
     def __init__(self, kline_iterator: KLineIterator):
         self.kline_iterator = kline_iterator
         self.current_kline: KLine = next(self.kline_iterator)
-        self._ts = self.current_kline.close
+        self._ts = self.current_kline.close_time
         self.trading_history = deque()
         self.kline_history = deque()
         # Maintain the limit order execution
