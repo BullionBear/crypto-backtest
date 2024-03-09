@@ -3,6 +3,7 @@ from uuid import UUID, uuid4
 
 
 class Order(BaseModel):
+    timestamp: int
     base: str
     quote: str
     side: str
