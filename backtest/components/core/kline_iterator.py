@@ -27,7 +27,8 @@ class KLineIteratorFromFileSystem(KLineIterator):
         start_date = datetime.utcfromtimestamp(self.start_time / 1000)
         end_date = datetime.utcfromtimestamp(self.end_time / 1000)  # Adjust end_date to include the end month
         return [os.path.join(source_dir, f'spot/monthly/klines/{symbol}/1h', f'{symbol}-1h-{dt.strftime("%Y-%m")}.zip')
-                   for dt in rrule.rrule(rrule.MONTHLY, dtstart=start_date, until=end_date)]
+                for dt in rrule.rrule(rrule.MONTHLY, dtstart=start_date, until=end_date)]
+
     def __next__(self):
         try:
             return next(self.current_df_iter)

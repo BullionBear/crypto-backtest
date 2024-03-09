@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
+from backtest.models import KLine
 
 
 class KLineIterator(ABC):
 
     @abstractmethod
-    def __next__(self):
+    def __next__(self) -> KLine:
         """Return the next item in the sequence. On reaching the end, raise StopIteration."""
         pass
 
