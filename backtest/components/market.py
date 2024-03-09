@@ -51,7 +51,7 @@ class KLineMarket:
             self.trading_history.append(execution)
         self.kline_history.append(self.current_kline)
         self.current_kline = next(self.kline_iterator)
-        self._ts = self.current_kline.close
+        self._ts = self.current_kline.close_time
 
     def is_kline(self):
         if len(self.kline_history):
