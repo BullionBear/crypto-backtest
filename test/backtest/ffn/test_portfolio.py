@@ -32,8 +32,7 @@ class TestPortfolio(unittest.TestCase):
 
     def test_calc_mdd(self):
         result = calc_mdd(self.df, 'nav')
-        expected = 0.5  # Maximum drawdown from the given dataset, depending on the calculation method
-        self.assertAlmostEqual(result, expected)
+        self.assertAlmostEqual(result, (1.3 - 0.8) / 1.3)
 
     def test_calc_interval_sharpe_ratio(self):
         interval = '1d'
