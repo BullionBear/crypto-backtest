@@ -8,4 +8,6 @@ pymongo
 python-binance
 tqdm
 python-dateutil
+pydantic
+pydantic-settings
 -r service/requirements.txt
