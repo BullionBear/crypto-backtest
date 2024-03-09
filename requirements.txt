@@ -7,4 +7,5 @@ pandas
 pymongo
 python-binance
 tqdm
+python-dateutil
 -r service/requirements.txt

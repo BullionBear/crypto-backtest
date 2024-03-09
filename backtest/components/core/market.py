@@ -3,7 +3,7 @@ from collections import deque
 
 
 class Market:
-    def __init__(self, timestamp, base, quote):
+    def __init__(self, timestamp, *symbols):
         self.trading_history = deque()
         self.kline_history = deque()
 
