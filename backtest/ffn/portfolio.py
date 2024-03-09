@@ -46,7 +46,7 @@ def calc_mdd(df: pd.DataFrame, nav_col: str):
 
 
 def calc_interval_sharpe_ratio(df: pd.DataFrame, ts_col: str, nav_col: str, interval: str):
-    r = calc_interval_volatility(df, ts_col, nav_col, interval)
+    r = calc_interval_return(df, ts_col, nav_col, interval)
     volatility = calc_interval_volatility(df, ts_col, nav_col, interval)
     return r / volatility
 
