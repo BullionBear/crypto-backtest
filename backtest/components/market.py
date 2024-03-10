@@ -50,8 +50,12 @@ class KLineMarket:
         for execution in self._execute():
             self.trading_history.append(execution)
         self.kline_history.append(self.current_kline)
-        self.current_kline = next(self.kline_iterator)
-        self._ts = self.current_kline.close_time
+        try:
+            self.current_kline = next(self.kline_iterator)
+            self._ts = self.current_kline.close_time
+            return True
+        except StopIteration:
+            return False
 
     def is_kline(self):
         if len(self.kline_history):
@@ -61,12 +65,12 @@ class KLineMarket:
     def get_kline(self):
         return self.kline_history.popleft()
 
-    def is_execute(self):
+    def is_trade(self):
         if len(self.trading_history):
             return True
         return False
 
-    def get_history(self):
+    def get_trade(self):
         return self.trading_history.popleft()
 
     def send_limit(self, order: LimitOrder):
