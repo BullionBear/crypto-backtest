@@ -59,7 +59,7 @@ class KLineMarket:
         return False
 
     def get_kline(self):
-        pass
+        return self.kline_history.popleft()
 
     def is_execute(self):
         if len(self.trading_history):
