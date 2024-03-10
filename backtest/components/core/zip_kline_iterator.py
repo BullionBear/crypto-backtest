@@ -4,12 +4,11 @@ from backtest.models import KLine
 import os
 from datetime import datetime
 from dateutil import rrule
-from dateutil.relativedelta import relativedelta
 import zipfile
 import pandas as pd
 
 
-class KLineIteratorFromFileSystem(KLineIterator):
+class ZipKLineIterator(KLineIterator):
     def __init__(self, symbol, start_time, end_time, fs_path):
         self.symbol = symbol
         self.start_time = start_time
@@ -44,7 +43,7 @@ class KLineIteratorFromFileSystem(KLineIterator):
     def _process_zip_file(self, zip_file):
         with zipfile.ZipFile(zip_file, 'r') as z:
             csv_file = os.path.basename(zip_file).replace('.zip', '.csv')
-            with z.open(csv_file) as csv:
+            with z.open(str(csv_file)) as csv:
                 df = pd.read_csv(csv, header=None,
                                  names=["open_time", "open", "high", "low", "close", "volume", "close_time",
                                         "quote_volume", "count", "taker_buy_volume", "taker_buy_quote_volume",
@@ -53,14 +52,5 @@ class KLineIteratorFromFileSystem(KLineIterator):
         self.current_df_iter = (KLine(**kline) for kline in df.to_dict('records'))
 
 
-if __name__ == '__main__':
-    symbol = "BTCUSDT"  # Example symbol
-    source_dir = "/home/yite/crypto_data/binance/data"  # Example source directory
-    start_time = 1678387200000  # Example start time
-    end_time = 1693929600000  # Example end time
-    kline_iterator = KLineIteratorFromFileSystem('BTCUSDT', 1690851600000, 1690869600000, '/home/yite/crypto_data/binance/data')
-    # print(kline_iterator.fs)
-    for k in kline_iterator:
-        print(k)
 
 
