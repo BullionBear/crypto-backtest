@@ -1,7 +1,5 @@
-
 import unittest
-from backtest.components.core import ZipKLineIterator  # Ensure you import your class correctly
-
+from backtest.components.core import ZipKLineIterator
 
 class TestZipKLineIterator(unittest.TestCase):
     def test_iteration(self):
