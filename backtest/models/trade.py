@@ -9,4 +9,5 @@ class Trade(BaseModel):
     quote: str
     side: str
     filled: float  # base amount
+    price: float
     order_id: UUID

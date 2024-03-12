@@ -104,6 +104,7 @@ class KLineMarket:
                                 quote=order.quote,
                                 side=order.side,
                                 filled=order.amount,
+                                price=order.price,
                                 order_id=order.order_id))
         return trades
 
@@ -117,6 +118,7 @@ class KLineMarket:
                                 quote=order.quote,
                                 side=order.side,
                                 filled=order.amount,
+                                price=order.price,
                                 order_id=order.order_id))
         return trades
 
@@ -124,11 +126,12 @@ class KLineMarket:
         trades = []
         while self._market_order:
             order = self._market_order.pop()
-            trades.append(Trade(timestamp=self._ts,
+            trades.append(Trade(timestamp=self.current_kline.open_time,
                                 base=order.base,
                                 quote=order.quote,
                                 side=order.side,
                                 filled=order.amount,
+                                price=self.current_kline.open,
                                 order_id=order.order_id))
         return trades
 
