@@ -19,8 +19,8 @@ class KLineMarket:
     - cancel(order_id: str): Cancel the order through order_id
     - is_kline() -> bool: Check if the there any updated information
     - get_kline() -> KLine: Get latest kline information
-    - is_execution() -> bool: Check if there is any executed order
-    - get_execution() -> Execution: Get the latest execution
+    - is_trade() -> bool: Check if there is any executed order
+    - get_trade() -> Execution: Get the latest execution
     """
     def __init__(self, kline_iterator: KLineIterator):
         self.kline_iterator = kline_iterator
@@ -32,7 +32,7 @@ class KLineMarket:
         self._ask: List[LimitOrder] = []
         self._bid: List[LimitOrder] = []
         # Market order
-        self._market_order = []
+        self._market_order: List[MarketOrder] = []
 
     def get_ts(self):
         return self._ts
@@ -120,5 +120,17 @@ class KLineMarket:
                                 order_id=order.order_id))
         return trades
 
+    def _execute_market_order(self):
+        trades = []
+        while self._market_order:
+            order = self._market_order.pop()
+            trades.append(Trade(timestamp=self._ts,
+                                base=order.base,
+                                quote=order.quote,
+                                side=order.side,
+                                filled=order.amount,
+                                order_id=order.order_id))
+        return trades
+
     def _execute(self):
-        return self._execute_buy_order() + self._execute_sell_order()
+        return self._execute_market_order() + self._execute_buy_order() + self._execute_sell_order()
