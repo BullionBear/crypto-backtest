@@ -10,4 +10,5 @@ tqdm
 python-dateutil
 pydantic
 pydantic-settings
+ta-lib
 -r service/requirements.txt
