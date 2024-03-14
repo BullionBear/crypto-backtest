@@ -11,7 +11,7 @@ class SMAFiltration(Filtration):
         self.n = n
 
     def get(self):
-        close = [kline.close for kline in self._klines[:15]]
+        close = [kline.close for kline in self._klines[-self.n:]]
         return statistics.mean(close)
 
     def put(self, event: KLine):
