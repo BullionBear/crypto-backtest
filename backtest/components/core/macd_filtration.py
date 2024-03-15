@@ -1,6 +1,5 @@
-import statistics
 from typing import List
-from statistics import mean
+import talib
 from backtest.virtual_components import Filtration
 from backtest.models import KLine
 
@@ -12,7 +11,7 @@ class SMAFiltration(Filtration):
 
     def get(self):
         close = [kline.close for kline in self._klines[-self.n:]]
-        return statistics.mean(close)
+        return talib.SMA(close, timeperiod=self.n)[-1]
 
     def put(self, event: KLine):
         self._klines.append(event)
