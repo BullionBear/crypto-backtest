@@ -1,4 +1,6 @@
 from typing import List
+
+import numpy as np
 import talib
 from backtest.virtual_components import Filtration
 from backtest.models import KLine
@@ -11,7 +13,7 @@ class SMAFiltration(Filtration):
 
     def get(self):
         close = [kline.close for kline in self._klines[-self.n:]]
-        return talib.SMA(close, timeperiod=self.n)[-1]
+        return talib.SMA(np.array(close), timeperiod=self.n)[-1]
 
     def put(self, event: KLine):
         self._klines.append(event)
