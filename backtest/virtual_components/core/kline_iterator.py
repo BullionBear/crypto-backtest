@@ -1,3 +1,5 @@
+import pandas as pd
+
 from abc import ABC, abstractmethod
 from backtest.models import KLine
 
@@ -12,3 +14,7 @@ class KLineIterator(ABC):
     def __iter__(self):
         """Return the iterator object itself."""
         return self
+
+    def to_dataframe(self):
+        klines = [dict(kline) for kline in self]
+        return pd.DataFrame(klines)
