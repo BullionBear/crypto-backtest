@@ -11,4 +11,7 @@ python-dateutil
 pydantic
 pydantic-settings
 ta-lib
+scikit-learn
+arch
+optuna
 -r service/requirements.txt
