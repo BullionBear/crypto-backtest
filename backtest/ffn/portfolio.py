@@ -23,12 +23,36 @@ def calc_interval_return(df: pd.DataFrame, ts_col: str, nav_col: str, interval: 
 
 
 def calc_interval_volatility(df: pd.DataFrame, ts_col: str, nav_col: str, interval: str):
+    """
+    Interval volatility adapt a raw calculation is because it consider a time-reweighted interval
+    estimation of volatility
+    """
     df = df.copy()
     df["log_return"] = np.log(df[nav_col] / df[nav_col].shift(1))
     df['diff'] = df[ts_col].diff()
     df = df.dropna()
     r = np.sum(df['log_return'] * df['diff']) / np.sum(df['diff'])
     df['diff_sq'] = np.power(df["diff"], 2)
+    var = (np.power(df["log_return"] - r, 2) * df['diff_sq']).sum() / df['diff_sq'].sum()
+    volatility = np.sqrt(var)
+    ave_span = df['diff'].mean()
+    interval_in_ms = convert_to_milliseconds(interval)
+    volatility = volatility * np.sqrt(interval_in_ms / ave_span)
+    return volatility
+
+
+def calc_interval_downward_volatility(df: pd.DataFrame, ts_col: str, nav_col: str, interval: str):
+    """
+    Interval volatility adapt a raw calculation is because it consider a time-reweighted interval
+    estimation of volatility
+    """
+    df = df.copy()
+    df["log_return"] = np.log(df[nav_col] / df[nav_col].shift(1))
+    df['diff'] = df[ts_col].diff()
+    df = df.dropna()
+    r = np.sum(df['log_return'] * df['diff']) / np.sum(df['diff'])
+    df['diff_sq'] = np.power(df["diff"], 2)
+    df = df[df['log_return'] < 0]  # Drop positive return
     var = (np.power(df["log_return"] - r, 2) * df['diff_sq']).sum() / df['diff_sq'].sum()
     volatility = np.sqrt(var)
     ave_span = df['diff'].mean()
