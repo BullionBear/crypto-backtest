@@ -16,8 +16,8 @@ def calc_return(df: pd.DataFrame, nav_col: str):
 
 
 def calc_interval_return(df: pd.DataFrame, ts_col: str, nav_col: str, interval: str):
-    r = (df[nav_col][len(df) - 1] - df[nav_col][0]) / df[nav_col][0]
-    span = df[ts_col][len(df) - 1] - df[ts_col][0]
+    r = (df[nav_col].iloc[len(df) - 1] - df[nav_col].iloc[0]) / df[nav_col].iloc[0]
+    span = df[ts_col].iloc[len(df) - 1] - df[ts_col].iloc[0]
     interval_in_ms = convert_to_milliseconds(interval)
     return r * interval_in_ms / span
 
