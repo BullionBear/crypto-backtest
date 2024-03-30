@@ -9,12 +9,13 @@ import pandas as pd
 
 
 class ZipKLineIterator(KLineIterator):
-    def __init__(self, symbol, start_time, end_time, fs_path):
+    def __init__(self, symbol, start_time, end_time, fs_path, granular='1h'):
         self.symbol = symbol
         self.start_time = start_time
         self.end_time = end_time
         self.fs_path = fs_path
         self.fs = self._load_fs_list()
+        self.granular = granular
         self.current_zip_index = 0
         self.current_df_iter = iter([])  # Initialize an empty iterator
 
@@ -23,9 +24,10 @@ class ZipKLineIterator(KLineIterator):
         # This is a placeholder for the logic to list relevant zip files based on the symbol and date range
         # Return a list of file paths
         symbol = self.symbol
+        granular = self.granular
         start_date = datetime.utcfromtimestamp(self.start_time / 1000)
         end_date = datetime.utcfromtimestamp(self.end_time / 1000)  # Adjust end_date to include the end month
-        return [os.path.join(self.fs_path, f'spot/monthly/klines/{symbol}/1h', f'{symbol}-1h-{dt.strftime("%Y-%m")}.zip')
+        return [os.path.join(self.fs_path, f'spot/monthly/klines/{symbol}/{granular}', f'{symbol}-{granular}-{dt.strftime("%Y-%m")}.zip')
                 for dt in rrule.rrule(rrule.MONTHLY, dtstart=start_date, until=end_date)]
 
     def __next__(self):
