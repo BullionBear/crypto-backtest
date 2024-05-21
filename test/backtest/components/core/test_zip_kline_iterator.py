@@ -7,12 +7,13 @@ class TestZipKLineIterator(unittest.TestCase):
     def setUp(self):
         # Example setup
         symbol = "BTCUSDT"
-        start_time = 1678387200000  # Example start time
-        end_time = 1678395600000  # Example end time
+        start_time = 1675209600000  # Example start time
+        end_time = 1676332800000  # Example end time
         source_dir = "/home/yite/crypto_data/binance/data"
+        granular = '1h'
 
         # Initialize the iterator
-        self.kline_iterator = ZipKLineIterator(symbol, start_time, end_time, source_dir)
+        self.kline_iterator = ZipKLineIterator(symbol, start_time, end_time, source_dir, granular)
 
     def test_iteration(self):
         # Expected data format (simplified example)

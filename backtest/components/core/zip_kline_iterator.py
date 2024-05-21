@@ -14,8 +14,9 @@ class ZipKLineIterator(KLineIterator):
         self.start_time = start_time
         self.end_time = end_time
         self.fs_path = fs_path
-        self.fs = self._load_fs_list()
         self.granular = granular
+        self.fs = self._load_fs_list()
+
         self.current_zip_index = 0
         self.current_df_iter = iter([])  # Initialize an empty iterator
 
