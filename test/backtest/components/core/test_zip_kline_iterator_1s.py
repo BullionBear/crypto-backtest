@@ -17,8 +17,8 @@ class TestZipKLineIterator(unittest.TestCase):
     def test_iteration(self):
         # Expected data format (simplified example)
         expected_results = [
-            {"open": 21013.32, "high": 21020.64, "close": 20854.93, "open_time": 1678388400000},
-            {"open": 20856.3, "high": 20867.3, "close": 20116.66, "open_time": 1678392000000}
+            {"open": 23125.13, "high": 23127.73, "close": 23126.4, "open_time": 1675209600000},
+            {"open": 23127.02, "high": 23127.23, "close": 23126.38, "open_time": 1675209601000}
         ]
 
         # Iterate over the kline_iterator and compare each result with the expected output

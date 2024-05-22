@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='crypto-backtest',
-    version='0.1.1',
+    version='0.1.2',
     description='BullionBear backtest framework',
     author='yitech',
     author_email='coastq22889@icloud.com',
