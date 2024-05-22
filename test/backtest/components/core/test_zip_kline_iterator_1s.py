@@ -2,7 +2,7 @@ import unittest
 from backtest.components.core import ZipKLineIterator1s
 
 
-class TestZipKLineIterator(unittest.TestCase):
+class TestZipKLineIterator1s(unittest.TestCase):
 
     def setUp(self):
         # Example setup

@@ -52,7 +52,7 @@ class ZipKLineIterator1s(KLineIterator):
                                  names=["open_time", "open", "high", "low", "close", "volume", "close_time",
                                         "quote_volume", "count", "taker_buy_volume", "taker_buy_quote_volume",
                                         "ignore"])
-        df = df[(df['open_time'] >= self.start_time) & (df['close_time'] < self.end_time)]
+        df = df[(df['open_time'] >= self.start_time) & (df['close_time'] <= self.end_time)]
         self.current_df_iter = (KLine(**kline) for kline in df.to_dict('records'))
 
     def to_dataframe(self):
