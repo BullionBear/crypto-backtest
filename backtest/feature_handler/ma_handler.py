@@ -25,3 +25,6 @@ class MovingAverageHandler(IFeatureHandler):
         if self.q.qsize() != self.period:
             return None
         return self.running_sum / self.period * self.rescale
+
+    def is_valid(self):
+        return self.q.qsize() == self.period

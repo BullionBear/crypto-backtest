@@ -14,3 +14,9 @@ class IFeatureHandler(ABC):
         """
         Get current result
         """
+
+    @abstractmethod
+    def is_valid(self):
+        """
+        Check is the value valid
+        """

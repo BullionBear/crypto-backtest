@@ -12,4 +12,9 @@ class LogReturnHandler(IFeatureHandler):
         self.log_prices.append(np.log(price))
 
     def get(self):
+        if len(self.log_prices) != 2:
+            return None
         return self.log_prices[-1] - self.log_prices[0]
+
+    def is_valid(self):
+        return len(self.log_prices) == 2
