@@ -1,29 +1,40 @@
+import argparse
 import csv
 import math
+import backtest.feature_handler as feature_handler
 
-# Open your CSV file
-with open('./data/btcusdt_data.csv', mode='r', newline='') as file:
-    # Create a DictReader object
-    reader = csv.DictReader(file)
 
-    # Iterate over each row in the CSV file
-    fieldnames = reader.fieldnames + ['log_price']
+def process_csv(input_file_path, output_file_path):
+    # Open the input CSV file
+    with open(input_file_path, mode='r', newline='') as file:
+        reader = csv.DictReader(file)
+        fieldnames = reader.fieldnames + ['log_price']
 
-    # Open a new file to write the updated data
-    with open('./data/btcusdt_feature.csv', mode='w', newline='') as outfile:
-        # Create a DictWriter object with the updated fieldnames
-        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        # Open the output file to write the updated data
+        with open(output_file_path, mode='w', newline='') as outfile:
+            writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+            writer.writeheader()
 
-        # Write the header to the new file
-        writer.writeheader()
+            for row in reader:
+                if row['close']:  # Check if there is a value in 'close'
+                    row['log_price'] = math.log(float(row['close']))
+                else:
+                    row['log_price'] = None
 
-        # Iterate over each row in the original file
-        for row in reader:
-            # Compute the log of the price and add it to the row under 'log_price' key
-            if row['close']:  # Ensure there is a value in 'close'
-                row['log_price'] = math.log(float(row['close']))
-            else:
-                row['log_price'] = None  # If no value, set as None or an appropriate value
+                writer.writerow(row)
 
-            # Write the updated row to the new file
-            writer.writerow(row)
+def main():
+    # Set up the argument parser
+    parser = argparse.ArgumentParser(description='Process a CSV file to add logarithm of closing prices.')
+    parser.add_argument('-s', '--source', type=str, required=True, help='The path to the input CSV file')
+    parser.add_argument('-d', '--destination', type=str, required=True, help='The path to the output CSV file with the added log price')
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Process the CSV file
+    process_csv(args.source, args.destination)
+
+
+if __name__ == "__main__":
+    main()

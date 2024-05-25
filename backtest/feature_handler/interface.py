@@ -3,6 +3,7 @@ from typing import Any
 
 
 class IFeatureHandler(ABC):
+
     @abstractmethod
     def read(self, data: Any):
         """
