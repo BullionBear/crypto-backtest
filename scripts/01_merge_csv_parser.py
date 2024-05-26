@@ -3,6 +3,7 @@ import zipfile
 import os
 import csv
 import logging
+import tqdm
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -35,7 +36,7 @@ def process_zip_files(src_folder, dst_file):
 
         # List and sort all zip files in the directory
         zip_files = sorted([file for file in os.listdir(src_folder) if file.endswith('.zip')])
-        for zip_file in zip_files:
+        for zip_file in tqdm.tqdm(zip_files):
             zip_path = os.path.join(src_folder, zip_file)
             logging.info(f"Processing file: {zip_path}")
 
@@ -53,5 +54,5 @@ def process_zip_files(src_folder, dst_file):
 if __name__ == '__main__':
     args = parse_arguments()
     symbol = args.symbol
-    src_folder = f"/home/yite/crypto_data/binance/data/spot/daily/klines/{symbol.upper()}/1s"
+    src_folder = f"/Users/yite/crypto_data/binance/data/spot/daily/klines/{symbol.upper()}/1s"
     process_zip_files(src_folder, args.dst_file)
