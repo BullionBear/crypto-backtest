@@ -14,6 +14,8 @@ ta-lib
 scikit-learn
 arch
 optuna
-cmaes
 psycopg2-binary
+torch
+torchvision
+mlflow
 -r service/requirements.txt
