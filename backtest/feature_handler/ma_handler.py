@@ -14,7 +14,6 @@ class MovingAverageHandler(IFeatureHandler):
         self.q = queue.Queue(maxsize=period)
         self.running_sum = 0
 
-
     def read(self, log_return: float):
         if self.q.qsize() >= self.period:
             old_return = self.q.get()

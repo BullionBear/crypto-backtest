@@ -15,4 +15,5 @@ scikit-learn
 arch
 optuna
 cmaes
+psycopg2-binary
 -r service/requirements.txt
