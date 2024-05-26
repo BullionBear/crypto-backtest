@@ -49,7 +49,7 @@ def main():
     # Set up the argument parser
     parser = argparse.ArgumentParser(description='Process a CSV file to add logarithm of closing prices.')
     parser.add_argument('-s', '--source', type=str, required=True, help='The path to the input CSV file')
-    parser.add_argument('-d', '--destination', type=str, required=True, help='The path to the output CSV file with the added log price')
+    parser.add_argument('-d', '--destination', type=str, required=True, help='The path to the output CSV')
 
     # Parse the arguments
     args = parser.parse_args()
