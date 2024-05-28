@@ -3,6 +3,9 @@ import json
 import pandas as pd
 import psycopg2
 from psycopg2.extras import execute_values
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def parse_args():
@@ -27,7 +30,7 @@ def insert_data_to_db(df, connection, table_config):
 
     execute_values(cursor, sql, data_tuples, page_size=len(data_tuples))
     connection.commit()
-    print(f"Inserted {len(data_tuples)} records successfully.")
+    logging.info(f"Inserted {len(data_tuples)} records successfully.")
 
 
 def main():

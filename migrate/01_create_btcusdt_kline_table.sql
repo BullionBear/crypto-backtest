@@ -1,4 +1,4 @@
-CREATE TABLE btcusdt_kline (
+CREATE TABLE btcusdt_kline_1s (
     open_time BIGINT,
     open NUMERIC,
     high NUMERIC,
@@ -13,4 +13,4 @@ CREATE TABLE btcusdt_kline (
     ignore INT
 );
 
-CREATE INDEX idx_open_time ON btcusdt_kline (open_time);
+CREATE INDEX idx_open_time ON btcusdt_kline_1s (open_time);
