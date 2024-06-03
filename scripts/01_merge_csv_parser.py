@@ -45,8 +45,11 @@ def process_zip_files(src_folder, dst_file):
                     logging.info(f"Reading CSV file: {csv_file}")
                     with zfile.open(csv_file) as f_csv:
                         csv_reader = csv.reader(f_csv.read().decode('utf-8').splitlines())
-                        for row in csv_reader:
-                            csv_writer.writerow(row)
+                        rows = list(csv_reader)
+                        if rows:
+                            csv_writer.writerows(rows)
+                            logging.info(f"Appended {len(rows)} lines from {csv_file}")
+
 
 
 if __name__ == '__main__':

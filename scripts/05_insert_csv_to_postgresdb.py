@@ -37,7 +37,7 @@ def main():
     args = parse_args()
     config = load_config(args.config)
     dbconfig = config['postgres']
-    print(f"Connect to {dbconfig}")
+    logging.info(f"Connect to {dbconfig}")
     # Database connection setup
     connection = psycopg2.connect(
         dbname=dbconfig['dbname'],
@@ -46,7 +46,7 @@ def main():
         host=dbconfig['host'],
         port=dbconfig['port']
     )
-    print(f"Connect success")
+    logging.info(f"Connect success")
     try:
         # Process CSV file in chunks
 

@@ -1,0 +1,16 @@
+{
+  "zipfolder": "/home/yite/Projects/binance-public-data/python/marketdata/data/spot/daily/klines/BTCUSDT/1s",
+  "postgres": {
+    "dbname": "lynkoraDB",
+    "user": "bullionbear",
+    "password": "Sunshine4Jellybean",
+    "host": "localhost",
+    "port": 5432
+  },
+  "table": {
+    "name": "btcusdt_kline_1s",
+    "column":  ["open_time", "open", "high", "low", "close", "volume", "close_time", "quote_volume", "count",
+      "taker_buy_volume", "taker_buy_quote_volume", "ignore"]
+  },
+  "batch": 86400
+}
